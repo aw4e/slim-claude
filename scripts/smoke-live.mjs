@@ -3,7 +3,7 @@
 // COSTS MONEY (one model session per case, roughly $0.05-0.30 each) and needs the `claude` CLI logged in.
 // Isolation: no user CLAUDE.md, no user settings, no user MCP servers; only this plugin is loaded. Each case runs in its
 // own temp working directory, with read access to this repo via --add-dir, and only the tools the case lists.
-import { spawn } from 'node:child_process';
+import { execFileSync, spawn } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -91,6 +91,28 @@ const CASES = [
       return f;
     },
   },
+  // ---- quality: planted defects. Each sandbox holds a known problem; the agent passes only if it names it. ----
+  agentCase('q-paladin', 'paladin', 'Use the paladin subagent to security-review auth.js in the current directory. List the findings.', [],
+    (r) => (mentions(r, /(sql\s*injection|injection|concatenat|parameteri[sz]ed|prepared)/i) ? [] : ['missed the planted SQL injection']),
+    { setup: (d) => fs.writeFileSync(path.join(d, 'auth.js'), "const db = require('./db');\nexports.findUser = function (name) {\n  return db.query(\"SELECT * FROM users WHERE name = '\" + name + \"'\");\n};\n") }),
+  agentCase('q-hunter', 'hunter', 'Use the hunter subagent to audit error handling in fetcher.js in the current directory. List the findings.', [],
+    (r) => (mentions(r, /(swallow|empty catch|silent|ignor|suppress|hides?|hidden)/i) ? [] : ['missed the planted swallowed error']),
+    { setup: (d) => fs.writeFileSync(path.join(d, 'fetcher.js'), "async function getPrice(id) {\n  try {\n    const res = await fetch('https://api.example.com/price/' + id);\n    return (await res.json()).price;\n  } catch (e) {\n  }\n  return 0;\n}\nmodule.exports = { getPrice };\n") }),
+  agentCase('q-proctor', 'proctor', 'Use the proctor subagent to assess test sufficiency of math.js against math.test.js in the current directory. List the gaps.', [],
+    (r) => (mentions(r, /(divide[- ]by[- ]zero|division by zero|b\s*===?\s*0|zero divisor|divisor of (0|zero)|denominator|dividing by (0|zero))/i) ? [] : ['missed the untested divide-by-zero branch']),
+    { setup: (d) => { fs.writeFileSync(path.join(d, 'math.js'), "function divide(a, b) {\n  if (b === 0) throw new Error('division by zero');\n  return a / b;\n}\nmodule.exports = { divide };\n"); fs.writeFileSync(path.join(d, 'math.test.js'), "const { divide } = require('./math');\nconsole.assert(divide(6, 3) === 2);\nconsole.assert(divide(9, 3) === 3);\n"); } }),
+  agentCase('q-janitor', 'janitor', 'Use the janitor subagent for a maintainability audit of the current directory. List the findings.', [],
+    (r) => (mentions(r, /(duplicat|copy|copied|same (function|logic)|formatDate)/i) ? [] : ['missed the planted duplicated function']),
+    { setup: (d) => { const fn = "function formatDate(d) {\n  const p = (n) => String(n).padStart(2, '0');\n  return d.getFullYear() + '-' + p(d.getMonth() + 1) + '-' + p(d.getDate());\n}\n"; fs.writeFileSync(path.join(d, 'orders.js'), fn + 'module.exports = { formatDate };\n'); fs.writeFileSync(path.join(d, 'invoices.js'), fn + 'module.exports = { formatDate };\n'); } }),
+  agentCase('q-arbiter', 'arbiter', 'Use the arbiter subagent to review the most recent commit in the current directory (use git show). Give a verdict and list real defects.', GIT_READ,
+    (r) => (mentions(r, /(off[- ]by[- ]one|one too many|extra (item|element|row)|size\s*\+\s*1|\+\s*1\b|returns? (size|one) ?\+? ?1|too many (items|elements))/i) ? [] : ['missed the planted off-by-one in paginate()']),
+    { setup: (d) => { const g = (...a) => execFileSync('git', ['-c', 'user.name=t', '-c', 'user.email=t@t', ...a], { cwd: d, stdio: 'ignore' }); g('init', '-q'); fs.writeFileSync(path.join(d, 'README.md'), 'demo\n'); g('add', '-A'); g('commit', '-q', '-m', 'init'); fs.writeFileSync(path.join(d, 'paginate.js'), "// returns one page of items; page is 0-based\nfunction paginate(items, page, size) {\n  return items.slice(page * size, page * size + size + 1);\n}\nmodule.exports = { paginate };\n"); g('add', '-A'); g('commit', '-q', '-m', 'add paginate helper'); } }),
+  // negative control: the same commit WITHOUT the bug must not be called broken
+  agentCase('q-arbiter-clean', 'arbiter', 'Use the arbiter subagent to review the most recent commit in the current directory (use git show). Give a verdict and list real defects.', GIT_READ,
+    (r) => (mentions(r, /off[- ]by[- ]one|size\s*\+\s*1|one too many|extra (item|element)/i) ? ['claimed the planted off-by-one in code that does not have it'] : []),
+    { setup: (d) => { const g = (...a) => execFileSync('git', ['-c', 'user.name=t', '-c', 'user.email=t@t', ...a], { cwd: d, stdio: 'ignore' }); g('init', '-q'); fs.writeFileSync(path.join(d, 'README.md'), 'demo\n'); g('add', '-A'); g('commit', '-q', '-m', 'init'); fs.writeFileSync(path.join(d, 'paginate.js'), "// returns one page of items; page is 0-based\nfunction paginate(items, page, size) {\n  return items.slice(page * size, page * size + size);\n}\nmodule.exports = { paginate };\n"); g('add', '-A'); g('commit', '-q', '-m', 'add paginate helper'); } }),
+  agentCase('q-oracle', 'oracle', 'Ask the oracle subagent why this prints 3 3 3 and how to fix it: for (var i = 0; i < 3; i++) { setTimeout(() => console.log(i), 0); }', [],
+    (r) => (mentions(r, /(closure|var\b.*(function|scope)|function[- ]scope|block[- ]scope|hoist|let\b)/i) ? [] : ['did not explain the var/closure cause'])),
   skillCase('ai-estimates'), skillCase('clonedeps'), skillCase('codemap'), skillCase('deanchor'), skillCase('deepwork'),
   skillCase('interview'), skillCase('obsidian'), skillCase('preset'), skillCase('reflect'), skillCase('simplify'),
   skillCase('slim-claude'), skillCase('step-back'), skillCase('verification-planning'), skillCase('worktrees'),
@@ -132,7 +154,7 @@ function runCase(c) {
       const r = parse(out);
       const failures = r.error ? [`session error: ${r.final.slice(0, 160)}`] : c.check(r, dir);
       fs.rmSync(dir, { recursive: true, force: true });
-      resolve({ id: c.id, pass: failures.length === 0, failures, cost: r.cost, secs: Math.round((Date.now() - started) / 1000), final: r.final.slice(0, 300) });
+      resolve({ id: c.id, pass: failures.length === 0, failures, cost: r.cost, secs: Math.round((Date.now() - started) / 1000), final: r.final.slice(0, 2500) });
     });
   });
 }

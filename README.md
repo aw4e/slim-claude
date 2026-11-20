@@ -12,10 +12,11 @@ UI, implementation, audits), plus skills and a few safety hooks, for Claude Code
 [oh-my-opencode-slim](https://github.com/alvinunreal/oh-my-opencode-slim) (MIT).
 
 > **Status: beta (v0.1.0).** Passes `claude plugin validate`; the hooks have automated tests (41 cases) and a
-> fresh-clone release gate. A live smoke suite (`scripts/smoke-live.mjs`, 29 real `claude -p` sessions on Windows)
+> fresh-clone release gate. A live smoke suite (`scripts/smoke-live.mjs`, 36 real `claude -p` sessions on Windows)
 > confirms that with the orchestrator as main agent every agent is dispatched, read-only agents stay read-only,
-> the council runs 3 seats on 3 models plus a synthesis, and all skills load. It checks wiring and tool use, not
-> the quality of each agent's output. Not yet verified: interactive sessions, macOS and Linux. Issues welcome.
+> the council runs 3 seats on 3 models plus a synthesis, and all skills load. Seven cases plant a known defect
+> (SQL injection, swallowed error, untested branch, duplicated code, off-by-one, var/closure) and check the audit
+> agents name it, plus one clean-code control; this measures recall on small cases, not general review quality. Not yet verified: interactive sessions, macOS and Linux. Issues welcome.
 
 ## Quick start
 
