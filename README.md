@@ -11,10 +11,11 @@ An orchestrator that plans work and hands it to specialist subagents (search, ar
 UI, implementation, audits), plus skills and a few safety hooks, for Claude Code. Adapted from
 [oh-my-opencode-slim](https://github.com/alvinunreal/oh-my-opencode-slim) (MIT).
 
-> **Status: beta (v0.1.0).** Passes `claude plugin validate`; the hooks have automated tests (41 cases)
-> and a fresh-clone release gate. Verified end to end once on Windows: with the orchestrator as the main agent, a
-> request was delegated to `slim-claude:explorer`, which searched and returned the correct result. Not yet verified:
-> the other agents and skills in real use, interactive sessions, macOS and Linux. Issues and reports welcome.
+> **Status: beta (v0.1.0).** Passes `claude plugin validate`; the hooks have automated tests (41 cases) and a
+> fresh-clone release gate. A live smoke suite (`scripts/smoke-live.mjs`, 29 real `claude -p` sessions on Windows)
+> confirms that with the orchestrator as main agent every agent is dispatched, read-only agents stay read-only,
+> the council runs 3 seats on 3 models plus a synthesis, and all skills load. It checks wiring and tool use, not
+> the quality of each agent's output. Not yet verified: interactive sessions, macOS and Linux. Issues welcome.
 
 ## Quick start
 
@@ -97,6 +98,7 @@ Before a release, run all three:
 claude plugin validate .
 node hooks/test.mjs                    # add --rust for the Rust hooks
 node scripts/check-fresh-clone.mjs     # clones origin as a Windows user would (autocrlf=true) and re-validates
+node scripts/smoke-live.mjs            # live: real claude -p sessions per agent/skill; costs money (~$2-3 in total)
 ```
 
 ## Not ported from oh-my-opencode-slim
