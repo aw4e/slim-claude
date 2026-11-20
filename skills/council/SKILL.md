@@ -29,8 +29,12 @@ not provider. Edit the roster below to change it.
 3. Collect all replies. Retry an empty seat once; mark failed seats; do not wait
    on stragglers.
 4. Dispatch one `Agent` call with `subagent_type` `council`, `model` default,
-   prompt = the question plus each seat's name, model, and full reply. Preserve
-   its structured report when answering the user.
+   prompt = the question plus each seat's name, model, and full reply.
+5. Answer the user with the council agent's report verbatim: keep its three
+   headings exactly as written (`## Council Response`, `## Per-Councillor Details`,
+   `## Council Summary`) and its Consensus Level wording. Do not rename, merge,
+   or reorder them. Add your own view only after the report, under a separate
+   line starting `My note:`.
 
 Never use the council as the only lane on a task, and never for single-specialist
 questions. It costs one call per seat plus one for synthesis.

@@ -87,6 +87,7 @@ const CASES = [
       if (seats.length !== 3) f.push(`expected 3 councillors, got ${seats.length}`);
       if (new Set(seats.map((s) => s.model)).size < 3) f.push(`seats did not use 3 different models (${seats.map((s) => s.model).join(',')})`);
       if (!dispatched(r, 'council')) f.push('council synthesizer not dispatched');
+      for (const h of ['Council Response', 'Per-Councillor Details', 'Council Summary']) if (!r.final.includes(h)) f.push(`report lacks the "${h}" section`);
       if (r.denied) f.push(`${r.denied} permission denial(s)`);
       return f;
     },
