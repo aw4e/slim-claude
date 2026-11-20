@@ -24,7 +24,7 @@ not provider. Edit the roster below to change it.
    a brief summary of needed context and file paths. Do not tell a seat what the
    others think.
 2. Dispatch every seat in parallel: one `Agent` call per seat in a single
-   message, `subagent_type` `councillor` (namespaced `oh-my-claudecode:councillor` if
+   message, `subagent_type` `councillor` (namespaced `slim-claude:councillor` if
    needed), with the seat's `model` override and a description naming the seat.
 3. Collect all replies. Retry an empty seat once; mark failed seats; do not wait
    on stragglers.

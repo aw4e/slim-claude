@@ -1,4 +1,4 @@
-# oh-my-claudecode
+# slim-claude
 
 An orchestrator plus specialist subagents and skills for Claude Code, adapted from
 [oh-my-opencode-slim](https://github.com/alvinunreal/oh-my-opencode-slim) (MIT).
@@ -23,8 +23,8 @@ An orchestrator plus specialist subagents and skills for Claude Code, adapted fr
 `deepwork` (multi-phase heavy builds), `interview` (spec Q&A), `council`, `worktrees` (isolated git lanes),
 `codemap` (hierarchical repo map, with script), `clonedeps` (dependency source for inspection),
 `simplify`, `verification-planning`, `step-back`, `deanchor`, `ai-estimates`,
-`reflect` (learn from past sessions), `obsidian` (save notes via the obsidian MCP, optional), `preset` (switch model tier: cheap/balanced/max), `oh-my-claudecode` (configure this plugin).
-Invoke as `/oh-my-claudecode:<skill>`. Project state lives under `.omc/`.
+`reflect` (learn from past sessions), `obsidian` (save notes via the obsidian MCP, optional), `preset` (switch model tier: cheap/balanced/max), `slim-claude` (configure this plugin).
+Invoke as `/slim-claude:<skill>`. Project state lives under `.slim-claude/`.
 
 ## MCP
 
@@ -34,7 +34,7 @@ Invoke as `/oh-my-claudecode:<skill>`. Project state lives under `.omc/`.
 
 All local, nothing is sent anywhere. The guards ask for confirmation; they never deny.
 
-- `SessionStart`: points the session at `.omc/codemap.json` and at any active deepwork task (`.omc/deepwork/*/progress.md`), so resume and compaction keep context.
+- `SessionStart`: points the session at `.slim-claude/codemap.json` and at any active deepwork task (`.slim-claude/deepwork/*/progress.md`), so resume and compaction keep context.
 - `UserPromptSubmit`: once per session, nudges toward the `council` skill when the prompt asks for consensus or second opinions (ignores code blocks and slash commands).
 - `PreToolUse` Bash: confirms force-push, `git reset --hard`, `git clean -f`, `rm -rf`, and worktree removal.
 - `PreToolUse` Write/Edit/MultiEdit: confirms writes to `.env*` (except `.example`), `*.pem`, `*.key`, SSH keys, or content that looks like an AWS/GitHub/Anthropic/Slack key or a private key block.
@@ -45,17 +45,17 @@ All local, nothing is sent anywhere. The guards ask for confirmation; they never
 Local test, from any project:
 
 ```
-claude --plugin-dir <path-to-this-folder> --agent oh-my-claudecode:orchestrator
+claude --plugin-dir <path-to-this-folder> --agent slim-claude:orchestrator
 ```
 
-To make the orchestrator the default, add `"agent": "oh-my-claudecode:orchestrator"`
+To make the orchestrator the default, add `"agent": "slim-claude:orchestrator"`
 to your own `~/.claude/settings.json` (plugins can no longer set this themselves).
 
 Distribute: push this folder to GitHub, then
 
 ```
-/plugin marketplace add <you>/oh-my-claudecode
-/plugin install oh-my-claudecode@oh-my-claudecode
+/plugin marketplace add <you>/slim-claude
+/plugin install slim-claude@slim-claude
 ```
 
 ## Customize
@@ -64,7 +64,7 @@ Edit the `model:` line in any `agents/*.md`. Subagents can only use Claude model
 (`opus`, `sonnet`, `haiku`, or a full model ID). Add an agent by dropping a new
 `.md` in `agents/` plus a routing line in `agents/orchestrator.md`. The council
 roster is the table in `skills/council/SKILL.md`. Durable per-user overrides go in
-`~/.claude/agents/` or `.claude/agents/` (see the `oh-my-claudecode` skill).
+`~/.claude/agents/` or `.claude/agents/` (see the `slim-claude` skill).
 
 Community agents (janitor, paladin, arbiter, hunter, proctor, validator, debugger, documenter, chronicler) are adapted from the oh-my-opencode marketplace; see `THIRD_PARTY_NOTICES.md`.
 

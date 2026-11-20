@@ -17,12 +17,12 @@ performs the approved filesystem/git operations directly.
 
 ### Step 1: Check Existing State
 
-First check whether `.omc/clonedeps.json` exists.
+First check whether `.slim-claude/clonedeps.json` exists.
 
 If it exists:
 
 1. Read it before asking explorer for a new plan.
-2. Check whether each listed `path` exists under `.omc/clonedeps/repos/`.
+2. Check whether each listed `path` exists under `.slim-claude/clonedeps/repos/`.
 3. Reuse existing cloned repos when they already satisfy the user's task.
 4. Only ask explorer for new recommendations if the existing manifest is
    missing, stale, or insufficient for the current task.
@@ -108,9 +108,9 @@ never duplicate entries or modify unrelated rules. This keeps cloned artifacts
 out of git.
 
 ```gitignore
-# BEGIN oh-my-claudecode clonedeps
-.omc/clonedeps/repos/
-# END oh-my-claudecode clonedeps
+# BEGIN slim-claude clonedeps
+.slim-claude/clonedeps/repos/
+# END slim-claude clonedeps
 ```
 
 Read cloned sources by their absolute path.
@@ -120,7 +120,7 @@ Read cloned sources by their absolute path.
 Create one folder per source repository under:
 
 ```text
-.omc/clonedeps/repos/<safe-repo-name>/
+.slim-claude/clonedeps/repos/<safe-repo-name>/
 ```
 
 Derive the safe name from the repository owner/name, not from the package name.
@@ -133,7 +133,7 @@ point each manifest entry at the same repo path with different `packagePath`
 values as needed. Do not create ecosystem folders, per-package clone folders, or
 per-version folders. If two different source repositories normalize to the same
 safe name, disambiguate manually and record the chosen path in
-`.omc/clonedeps.json`.
+`.slim-claude/clonedeps.json`.
 
 Clone/fetch with normal git commands. For an existing clone, first verify that
 `git remote get-url origin` matches the approved repo URL. If it does not match,
@@ -144,7 +144,7 @@ Safe manual git pattern:
 1. `git ls-remote <repoUrl> <ref>` to verify the ref where practical.
 2. Clone without submodules/recursive behavior.
 3. Prefer shallow fetch/clone where practical.
-4. Clone into a temporary directory under `.omc/clonedeps/repos/`, then move it
+4. Clone into a temporary directory under `.slim-claude/clonedeps/repos/`, then move it
    into the final safe-name path after checkout succeeds.
 5. Remove failed temporary clones.
 
@@ -152,7 +152,7 @@ Do not run dependency install/build/test scripts from cloned repositories.
 
 ### Step 6: Write Local State
 
-Write `.omc/clonedeps.json` so future agents know what exists:
+Write `.slim-claude/clonedeps.json` so future agents know what exists:
 
 ```json
 {
@@ -164,7 +164,7 @@ Write `.omc/clonedeps.json` so future agents know what exists:
       "resolvedVersion": "1.3.17",
       "repoUrl": "https://github.com/example-org/example-lib.git",
       "ref": "v1.3.17",
-      "path": ".omc/clonedeps/repos/example-org__example-lib",
+      "path": ".slim-claude/clonedeps/repos/example-org__example-lib",
       "packagePath": "packages/plugin",
       "reason": "Plugin API source used by the project"
     },
@@ -173,7 +173,7 @@ Write `.omc/clonedeps.json` so future agents know what exists:
       "resolvedVersion": "1.3.17",
       "repoUrl": "https://github.com/example-org/example-lib.git",
       "ref": "v1.3.17",
-      "path": ".omc/clonedeps/repos/example-org__example-lib",
+      "path": ".slim-claude/clonedeps/repos/example-org__example-lib",
       "packagePath": "packages/sdk/js",
       "reason": "Core SDK source used to inspect runtime behavior"
     }
@@ -184,9 +184,9 @@ Write `.omc/clonedeps.json` so future agents know what exists:
 If a clone fails after earlier clones succeeded, still write state for the
 successful clones so future inspection is not misleading.
 
-Do not add `.omc/clonedeps.json` to `.gitignore`. It is small, reviewable
+Do not add `.slim-claude/clonedeps.json` to `.gitignore`. It is small, reviewable
 project metadata that can be committed. Only the cloned repository contents
-under `.omc/clonedeps/repos/` should be ignored.
+under `.slim-claude/clonedeps/repos/` should be ignored.
 
 ### Step 7: Register Dependency Source in CLAUDE.md
 
@@ -203,24 +203,24 @@ sentence so future agents do not need an extra read just to know what is there:
 ## Cloned Dependency Source
 
 Read-only dependency source repositories are available under
-`.omc/clonedeps/repos/` for inspection. Do not edit these clones.
+`.slim-claude/clonedeps/repos/` for inspection. Do not edit these clones.
 
-- `.omc/clonedeps/repos/<safe-name>/` - `<repo>` at `<ref>`; <one sentence on
+- `.slim-claude/clonedeps/repos/<safe-name>/` - `<repo>` at `<ref>`; <one sentence on
   why this source is useful>.
-- `.omc/clonedeps/repos/<safe-name-2>/` - `<repo>` at `<ref>`; <one sentence on
+- `.slim-claude/clonedeps/repos/<safe-name-2>/` - `<repo>` at `<ref>`; <one sentence on
   why this source is useful>.
 ```
 
-Also keep `.omc/clonedeps.json` updated as the structured manifest, but do not
+Also keep `.slim-claude/clonedeps.json` updated as the structured manifest, but do not
 make agents read it for the basic repo list.
 
 ## Cleanup
 
 When the user asks to clean cloned dependencies, remove:
 
-- `.omc/clonedeps/repos/`
+- `.slim-claude/clonedeps/repos/`
 - the managed clonedeps marker block from `.gitignore`, plus any from `.ignore`
   written by earlier versions
 
-Ask before removing `.omc/clonedeps.json` or the `CLAUDE.md` section because
+Ask before removing `.slim-claude/clonedeps.json` or the `CLAUDE.md` section because
 they may be intentional project metadata.

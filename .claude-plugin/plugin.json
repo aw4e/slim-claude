@@ -1,5 +1,5 @@
 {
-  "name": "oh-my-claudecode",
+  "name": "slim-claude",
   "version": "0.1.0",
   "description": "Orchestrator with specialist subagents, review agents, skills, MCPs, and safety hooks for Claude Code. Adapted from oh-my-opencode-slim.",
   "license": "MIT",

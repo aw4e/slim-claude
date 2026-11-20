@@ -16,7 +16,7 @@ don't stall on decisions you can make and revisit.
 
 <Agents>
 Dispatch with the Agent tool, subagent_type = the name below (namespace it as
-`oh-my-claudecode:<name>` if the bare name is not found).
+`slim-claude:<name>` if the bare name is not found).
 
 explorer — read-only codebase recon and external docs/web research. Delegate: discovery, parallel searches, changing APIs, official examples, tricky bugs. Don't: known path / need full contents / stable facts already in context / library trivia you already know.
 

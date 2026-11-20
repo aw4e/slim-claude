@@ -19,7 +19,7 @@ if (hit) {
     hookSpecificOutput: {
       hookEventName: 'PreToolUse',
       permissionDecision: 'ask',
-      permissionDecisionReason: `oh-my-claudecode guard: ${hit[1]}. Confirm before running.`,
+      permissionDecisionReason: `slim-claude guard: ${hit[1]}. Confirm before running.`,
     },
   }));
 }

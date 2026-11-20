@@ -1,12 +1,12 @@
 {
-  "name": "oh-my-claudecode",
+  "name": "slim-claude",
   "owner": {
     "name": "aw4e",
     "url": "https://github.com/aw4e"
   },
   "plugins": [
     {
-      "name": "oh-my-claudecode",
+      "name": "slim-claude",
       "source": "./",
       "description": "Orchestrator and specialist subagents for Claude Code."
     }

@@ -15,7 +15,7 @@ if (/^\s*\/[a-z][\w:-]*(\s|$)/i.test(text) || !TRIGGER.test(text)) process.exit(
 
 const sid = String(input.session_id ?? '').replace(/[^\w-]/g, '');
 if (sid) {
-  const marker = path.join(os.tmpdir(), `omcc-council-${sid}`);
+  const marker = path.join(os.tmpdir(), `slim-claude-council-${sid}`);
   if (fs.existsSync(marker)) process.exit(0);
   try { fs.writeFileSync(marker, ''); } catch { /* best effort: nudge may repeat */ }
 }
@@ -23,6 +23,6 @@ if (sid) {
 console.log(JSON.stringify({
   hookSpecificOutput: {
     hookEventName: 'UserPromptSubmit',
-    additionalContext: 'If this request calls for multi-model consensus, run the council skill (/oh-my-claudecode:council). Ignore this note if the word was incidental.',
+    additionalContext: 'If this request calls for multi-model consensus, run the council skill (/slim-claude:council). Ignore this note if the word was incidental.',
   },
 }));

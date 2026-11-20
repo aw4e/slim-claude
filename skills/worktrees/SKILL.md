@@ -1,12 +1,12 @@
 ---
 name: worktrees
-description: Manage Git worktrees as oh-my-claudecode safe isolated coding lanes for complex, risky, or parallel work.
+description: Manage Git worktrees as slim-claude safe isolated coding lanes for complex, risky, or parallel work.
 ---
 
 # Worktrees Orchestration Protocol
 
 The `worktrees` skill provides an opinionated, safe orchestration protocol for
-managing Git worktrees as isolated coding lanes. Its value is giving the Orchestrator a consistent oh-my-claudecode workflow for parallel agents, risky experiments, integration review, and cleanup.
+managing Git worktrees as isolated coding lanes. Its value is giving the Orchestrator a consistent slim-claude workflow for parallel agents, risky experiments, integration review, and cleanup.
 
 ## Running inside Orca
 
@@ -14,7 +14,7 @@ If the session is inside Orca (the `orca` CLI resolves, or `ORCA_TERMINAL_HANDLE
 set), let Orca own the checkout instead of raw `git worktree`. Load the `orca-cli` skill
 first and follow its guide; below is only how it maps onto this protocol. The Core
 Contract, Safety Guidelines, and confirmation rules still apply, but Orca paths replace
-`.omc/worktrees/` and `.omc/worktrees.json` (Orca tracks lanes itself), and the
+`.slim-claude/worktrees/` and `.slim-claude/worktrees.json` (Orca tracks lanes itself), and the
 `.gitignore` block is not needed.
 
 - Create a lane: `orca worktree create --name <slug> --parent-worktree active --json`
@@ -42,14 +42,14 @@ delegation, diff validation, integration, and cleanup.
 All worktrees reside under the default path:
 
 ```text
-.omc/worktrees/<slug>/
+.slim-claude/worktrees/<slug>/
 ```
 
 Do not create worktrees as sibling directories of the main repository.
 
-### State Tracking (`.omc/worktrees.json`)
+### State Tracking (`.slim-claude/worktrees.json`)
 
-Use the optional local metadata manifest `.omc/worktrees.json` to maintain
+Use the optional local metadata manifest `.slim-claude/worktrees.json` to maintain
 structural tracking:
 
 ```json
@@ -59,8 +59,8 @@ structural tracking:
   "lanes": [
     {
       "slug": "feature-auth-v2",
-      "branch": "omcc/feature-auth-v2",
-      "path": ".omc/worktrees/feature-auth-v2",
+      "branch": "slim/feature-auth-v2",
+      "path": ".slim-claude/worktrees/feature-auth-v2",
       "base": "main",
       "purpose": "refactor authentication flow to use OAuth2",
       "owner": "orchestrator",
@@ -72,7 +72,7 @@ structural tracking:
 }
 ```
 
-If `.omc/worktrees.json` does not exist, create it when initializing a lane,
+If `.slim-claude/worktrees.json` does not exist, create it when initializing a lane,
 and keep it updated as lanes are transitioned, integrated, or pruned. Treat it
 as local workflow metadata by default; ask before making it part of a committed
 project convention.
@@ -88,8 +88,8 @@ following guards:
 - Confirm the current directory is inside a Git repository.
 - Check the current branch, base branch, and dirty/uncommitted state.
 - Inspect the output of `git worktree list` to avoid path or branch conflicts.
-- Ensure the branch name (e.g. `omcc/<slug>` or custom project convention) does not already exist locally or on remote.
-- Ensure `.omc/worktrees/` is ignored by Git before creating nested worktrees.
+- Ensure the branch name (e.g. `slim/<slug>` or custom project convention) does not already exist locally or on remote.
+- Ensure `.slim-claude/worktrees/` is ignored by Git before creating nested worktrees.
 
 ### 2. Mandatory User Confirmation
 You must seek explicit user confirmation before executing:
@@ -111,10 +111,10 @@ lines below, never duplicate entries or modify unrelated rules. This keeps lane
 artifacts out of git.
 
 ```gitignore
-# BEGIN oh-my-claudecode worktrees
-.omc/worktrees/
-.omc/worktrees.json
-# END oh-my-claudecode worktrees
+# BEGIN slim-claude worktrees
+.slim-claude/worktrees/
+.slim-claude/worktrees.json
+# END slim-claude worktrees
 ```
 
 ---
@@ -123,19 +123,19 @@ artifacts out of git.
 
 ### Phase 1: Planning & Setup
 1. Identify the task scope and determine a short `<slug>` for the worktree.
-2. Formulate a branch name. Default to `omcc/<slug>` unless project/user conventions dictate otherwise.
+2. Formulate a branch name. Default to `slim/<slug>` unless project/user conventions dictate otherwise.
 3. Validate repository safety. Ask the user for confirmation to initialize the lane.
 4. Before creating the lane, ensure the managed ignore blocks are present using
    the Ignore File Setup rules above.
 5. Run:
    ```bash
-   git worktree add -b <branch-name> .omc/worktrees/<slug> <base-commit/branch>
+   git worktree add -b <branch-name> .slim-claude/worktrees/<slug> <base-commit/branch>
    ```
-6. Register the metadata in `.omc/worktrees.json`.
+6. Register the metadata in `.slim-claude/worktrees.json`.
 
 ### Phase 2: Execution & Delegation
 1. Run all sub-agents with their working directory set strictly to the worktree
-   path, such as `.omc/worktrees/<slug>`.
+   path, such as `.slim-claude/worktrees/<slug>`.
 2. Do not modify the main checkout for lane work. Keep build, test, and edit
    operations isolated inside the lane.
 3. Track file or folder ownership per lane to avoid merge conflicts between
@@ -162,9 +162,9 @@ Before merging or integrating the worktree branch:
 4. Request user approval to remove the worktree.
 5. Safely remove the worktree using:
    ```bash
-   git worktree remove .omc/worktrees/<slug>
+   git worktree remove .slim-claude/worktrees/<slug>
    ```
-6. Update `.omc/worktrees.json` to mark the lane as `archived` or remove it.
+6. Update `.slim-claude/worktrees.json` to mark the lane as `archived` or remove it.
 
 ---
 

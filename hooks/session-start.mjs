@@ -8,18 +8,18 @@ try { cwd = JSON.parse(fs.readFileSync(0, 'utf8')).cwd || cwd; } catch { /* no s
 
 const notes = [];
 
-if (fs.existsSync(path.join(cwd, '.omc', 'codemap.json'))) {
-  notes.push('This repo has a codemap (.omc/codemap.json). Read the nearest codemap.md before exploring unfamiliar folders; run the codemap skill to refresh it after large changes.');
+if (fs.existsSync(path.join(cwd, '.slim-claude', 'codemap.json'))) {
+  notes.push('This repo has a codemap (.slim-claude/codemap.json). Read the nearest codemap.md before exploring unfamiliar folders; run the codemap skill to refresh it after large changes.');
 }
 
-const deepwork = path.join(cwd, '.omc', 'deepwork');
+const deepwork = path.join(cwd, '.slim-claude', 'deepwork');
 if (fs.existsSync(deepwork)) {
   for (const slug of fs.readdirSync(deepwork, { withFileTypes: true }).filter((d) => d.isDirectory())) {
     const progress = path.join(deepwork, slug.name, 'progress.md');
     if (!fs.existsSync(progress)) continue;
     const first = fs.readFileSync(progress, 'utf8').split(/\r?\n/, 1)[0] ?? '';
     if (!/status:\s*completed/i.test(first)) {
-      notes.push(`Deepwork task "${slug.name}" looks active. If this session continues it, load the deepwork skill and read .omc/deepwork/${slug.name}/progress.md before anything else.`);
+      notes.push(`Deepwork task "${slug.name}" looks active. If this session continues it, load the deepwork skill and read .slim-claude/deepwork/${slug.name}/progress.md before anything else.`);
     }
   }
 }

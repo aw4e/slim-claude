@@ -1,6 +1,6 @@
 ---
 name: preset
-description: Switch the model tier of all oh-my-claudecode agents at once (cheap, balanced, max). Use when the user wants to cut cost, raise quality, or asks about model presets.
+description: Switch the model tier of all slim-claude agents at once (cheap, balanced, max). Use when the user wants to cut cost, raise quality, or asks about model presets.
 ---
 
 # Model presets
@@ -24,5 +24,5 @@ Presets rewrite the `model:` line in each agent's frontmatter. Claude models onl
 
 The script edits the plugin's own `agents/` directory. An installed plugin cache is
 overwritten on update, so re-run the preset afterwards, or keep a durable copy of an
-agent in `~/.claude/agents/` (see the `oh-my-claudecode` skill). Change which agent gets
+agent in `~/.claude/agents/` (see the `slim-claude` skill). Change which agent gets
 which model by editing `presets.json` next to this file.

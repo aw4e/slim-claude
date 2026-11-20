@@ -17,13 +17,13 @@ You help users understand and map repositories by creating hierarchical codemaps
 
 ### Step 1: Check for Existing State
 
-**First, check if `.omc/codemap.json` exists in the repo root.**
+**First, check if `.slim-claude/codemap.json` exists in the repo root.**
 
-If it does not exist, check for legacy state at `.omc/cartography.json`.
+If it does not exist, check for legacy state at `.slim-claude/cartography.json`.
 
-If legacy state exists: move `.omc/cartography.json` to `.omc/codemap.json`, then continue with change detection.
+If legacy state exists: move `.slim-claude/cartography.json` to `.slim-claude/codemap.json`, then continue with change detection.
 
-If `.omc/codemap.json` exists: Skip to Step 3 (Detect Changes) - no need to re-initialize.
+If `.slim-claude/codemap.json` exists: Skip to Step 3 (Detect Changes) - no need to re-initialize.
 
 If neither file exists: Continue to Step 2 (Initialize).
 
@@ -47,7 +47,7 @@ node scripts/codemap.mjs init \
 ```
 
 This creates:
-- `.omc/codemap.json` - File and folder hashes for change detection
+- `.slim-claude/codemap.json` - File and folder hashes for change detection
 - Empty `codemap.md` files in all relevant subdirectories
 
 4. **Delegate codemap writing to Fixer agents** - Spawn one fixer per folder to read code and create or update its specific `codemap.md` file.

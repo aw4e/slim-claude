@@ -1,6 +1,6 @@
 # Third-party notices
 
-oh-my-claudecode is a derivative work. The upstream copyright and permission notices below are
+slim-claude is a derivative work. The upstream copyright and permission notices below are
 retained as the MIT License requires. The named projects and their authors are not affiliated with
 or endorsing this project.
 

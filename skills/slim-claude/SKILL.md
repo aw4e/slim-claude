@@ -1,9 +1,9 @@
 ---
-name: oh-my-claudecode
-description: Configure and improve the oh-my-claudecode plugin for the current user. Use when users want to tune agents, models, prompts, custom agents, skills, MCPs, or plugin behavior, or when recurring workflow friction suggests a safe prompt or config improvement.
+name: slim-claude
+description: Configure and improve the slim-claude plugin for the current user. Use when users want to tune agents, models, prompts, custom agents, skills, MCPs, or plugin behavior, or when recurring workflow friction suggests a safe prompt or config improvement.
 ---
 
-# oh-my-claudecode Configuration Skill
+# slim-claude Configuration Skill
 
 Help the user configure the plugin and safely make small prompt/config changes
 that improve future runs. Suggest changes only for recurring behavior, not one-offs.
@@ -17,7 +17,7 @@ that improve future runs. Suggest changes only for recurring behavior, not one-o
   - Agent override: `~/.claude/agents/<name>.md` (user scope) or `<project>/.claude/agents/<name>.md` (project scope, wins).
   - Skill override: `~/.claude/skills/<name>/SKILL.md` or `<project>/.claude/skills/<name>/`.
   - House rules: `CLAUDE.md`.
-- Default main agent: `"agent": "oh-my-claudecode:orchestrator"` in the user's own `settings.json`, or `claude --agent oh-my-claudecode:orchestrator`.
+- Default main agent: `"agent": "slim-claude:orchestrator"` in the user's own `settings.json`, or `claude --agent slim-claude:orchestrator`.
 
 ## Common customizations
 

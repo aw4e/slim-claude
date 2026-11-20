@@ -30,7 +30,7 @@ if (reason) {
     hookSpecificOutput: {
       hookEventName: 'PreToolUse',
       permissionDecision: 'ask',
-      permissionDecisionReason: `oh-my-claudecode guard: ${reason}. Confirm before writing.`,
+      permissionDecisionReason: `slim-claude guard: ${reason}. Confirm before writing.`,
     },
   }));
 }

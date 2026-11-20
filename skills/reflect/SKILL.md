@@ -16,8 +16,8 @@ review, or speculative agent creation without workflow evidence.
 ## Evidence sources (read-only, in order)
 
 1. The current conversation.
-2. Project guidance: `CLAUDE.md`, `.claude/` (agents, skills, commands), `.omc/` (deepwork progress, codemap, notes).
-3. This plugin's config (see the `oh-my-claudecode` skill).
+2. Project guidance: `CLAUDE.md`, `.claude/` (agents, skills, commands), `.slim-claude/` (deepwork progress, codemap, notes).
+3. This plugin's config (see the `slim-claude` skill).
 4. With `--sessions`: past session transcripts, `~/.claude/projects/<project-slug>/*.jsonl` (one JSON event per line). Sample the most recent N (default 20, or `--last N`) by modification time; read user-turn text and tool-use names only. Delegate bulk reading to the `explorer` subagent. Never copy secrets, tokens, or personal data into a summary.
 
 ## Process
@@ -31,7 +31,7 @@ review, or speculative agent creation without workflow evidence.
    - a permission or model change;
    - nothing.
 4. Report: pattern, evidence (session/file references), proposed change, target file, expected effect, risk.
-5. Ask before applying anything. Apply via the `oh-my-claudecode` skill rules, and say when it takes effect (next session).
+5. Ask before applying anything. Apply via the `slim-claude` skill rules, and say when it takes effect (next session).
 
 ## Output
 

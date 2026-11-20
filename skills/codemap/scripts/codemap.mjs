@@ -14,7 +14,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const VERSION = '1.0.0';
-export const STATE_DIR = '.omc';
+export const STATE_DIR = '.slim-claude';
 export const STATE_FILE = 'codemap.json';
 export const LEGACY_STATE_FILE = 'cartography.json';
 export const CODEMAP_FILE = 'codemap.md';

@@ -85,12 +85,12 @@ At the end of each pass:
 
 ## State
 
-`.omc/deepwork/<task-slug>/progress.md` is the resume file, rewritten in
+`.slim-claude/deepwork/<task-slug>/progress.md` is the resume file, rewritten in
 place, at most about 40 lines of plain prose: status, pass and goal, next
 step, constraints and decisions, running lanes (one line each), a References
 list of project files, and the ranked known-issues list. No activity log.
 
-Setup: ensure `.gitignore` contains `.omc/deepwork/`, adding it only if
+Setup: ensure `.gitignore` contains `.slim-claude/deepwork/`, adding it only if
 missing. Update state at pass transitions, decisions, and blockers — not after
 every lane.
 
