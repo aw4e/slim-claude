@@ -1,6 +1,6 @@
 ---
 name: slim-claude
-description: Configure and improve the slim-claude plugin for the current user. Use when users want to tune agents, models, prompts, custom agents, skills, MCPs, or plugin behavior, or when recurring workflow friction suggests a safe prompt or config improvement.
+description: "Configure and improve the slim-claude plugin for the current user. Use when users want to tune agents, models, prompts, custom agents, skills, MCPs, or plugin behavior, or when recurring workflow friction suggests a safe prompt or config improvement."
 ---
 
 # slim-claude Configuration Skill

@@ -1,6 +1,6 @@
 ---
 name: councillor
-description: Read-only council seat giving an independent assessment. Dispatched by the council skill, once per model.
+description: "Read-only council seat giving an independent assessment. Dispatched by the council skill, once per model."
 tools: Read, Grep, Glob
 ---
 

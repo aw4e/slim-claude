@@ -1,6 +1,6 @@
 ---
 name: observer
-description: Visual analysis specialist for images, screenshots, PDFs, and diagrams; keeps media out of the caller's context. Always pass the full file path.
+description: "Visual analysis specialist for images, screenshots, PDFs, and diagrams; keeps media out of the caller's context. Always pass the full file path."
 model: sonnet
 tools: Read, Grep, Glob
 ---

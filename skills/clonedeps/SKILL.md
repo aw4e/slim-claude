@@ -1,6 +1,6 @@
 ---
 name: clonedeps
-description: Clone important project dependency source code into an ignored local workspace so Claude Code can inspect library internals. Use when the user asks to clone dependencies, inspect dependency/source internals, understand SDK/framework behavior from source, debug library implementation details, or make core dependency repos locally readable. Do not use for ordinary API/docs questions where the explorer subagent is enough.
+description: "Clone important project dependency source code into an ignored local workspace so Claude Code can inspect library internals. Use when the user asks to clone dependencies, inspect dependency/source internals, understand SDK/framework behavior from source, debug library implementation details, or make core dependency repos locally readable. Do not use for ordinary API/docs questions where the explorer subagent is enough."
 ---
 
 # Clonedeps Skill

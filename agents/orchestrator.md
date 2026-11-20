@@ -1,6 +1,6 @@
 ---
 name: orchestrator
-description: Workflow manager that plans, delegates to specialist subagents, reconciles their work, and verifies the result.
+description: "Workflow manager that plans, delegates to specialist subagents, reconciles their work, and verifies the result."
 ---
 
 <Role>

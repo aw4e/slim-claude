@@ -1,6 +1,6 @@
 ---
 name: council
-description: Multi-model consensus for high-stakes decisions. Use when the user asks for a council, second opinions, consensus, a roundtable, or several models' views on one question. Not for routine work.
+description: "Multi-model consensus for high-stakes decisions. Use when the user asks for a council, second opinions, consensus, a roundtable, or several models' views on one question. Not for routine work."
 ---
 
 # Council Mode

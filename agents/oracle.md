@@ -1,6 +1,6 @@
 ---
 name: oracle
-description: Strategic technical advisor for architecture, hard debugging, and code review. Read-only.
+description: "Strategic technical advisor for architecture, hard debugging, and code review. Read-only."
 model: opus
 tools: Read, Grep, Glob
 ---

@@ -1,6 +1,6 @@
 ---
 name: obsidian
-description: Save session summaries, decisions, findings, and finished specs or deepwork outcomes to the user's Obsidian vault through the obsidian MCP. Use at the end of meaningful work, or when the user says to save or log something to Obsidian. Skip if no obsidian MCP tools are available.
+description: "Save session summaries, decisions, findings, and finished specs or deepwork outcomes to the user's Obsidian vault through the obsidian MCP. Use at the end of meaningful work, or when the user says to save or log something to Obsidian. Skip if no obsidian MCP tools are available."
 ---
 
 # Obsidian notes

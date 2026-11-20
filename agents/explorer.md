@@ -1,6 +1,6 @@
 ---
 name: explorer
-description: Fast read-only codebase search and external docs/web research.
+description: "Fast read-only codebase search and external docs/web research."
 model: haiku
 disallowedTools: Edit, Write, NotebookEdit, Agent
 ---

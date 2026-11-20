@@ -1,6 +1,6 @@
 ---
 name: step-back
-description: Use when a task keeps growing through patches: repeated fixes, workarounds, compatibility shims, or a new path built beside an old one. Pause, reassess the direction, and propose a cleaner alternative before continuing.
+description: "Use when a task keeps growing through patches: repeated fixes, workarounds, compatibility shims, or a new path built beside an old one. Pause, reassess the direction, and propose a cleaner alternative before continuing."
 ---
 
 # Step Back

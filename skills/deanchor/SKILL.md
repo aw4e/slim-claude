@@ -1,6 +1,6 @@
 ---
 name: deanchor
-description: Use when a request includes examples, samples, templates, or reference outputs. Treat them as evidence of intent, not as something to copy: infer the principle behind them and produce something original at that level.
+description: "Use when a request includes examples, samples, templates, or reference outputs. Treat them as evidence of intent, not as something to copy: infer the principle behind them and produce something original at that level."
 ---
 
 # Deanchor

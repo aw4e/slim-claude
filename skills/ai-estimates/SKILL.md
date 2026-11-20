@@ -1,6 +1,6 @@
 ---
 name: ai-estimates
-description: Use when estimating how long a task will take: coding, writing, research, analysis, design, data work, or anything else AI can contribute to. Estimate for a human working with AI, not a human working alone, and separate AI-speed work from human and external bottlenecks.
+description: "Use when estimating how long a task will take: coding, writing, research, analysis, design, data work, or anything else AI can contribute to. Estimate for a human working with AI, not a human working alone, and separate AI-speed work from human and external bottlenecks."
 ---
 
 # AI-Era Estimates

@@ -1,6 +1,6 @@
 ---
 name: worktrees
-description: Manage Git worktrees as slim-claude safe isolated coding lanes for complex, risky, or parallel work.
+description: "Manage Git worktrees as slim-claude safe isolated coding lanes for complex, risky, or parallel work."
 ---
 
 # Worktrees Orchestration Protocol

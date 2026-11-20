@@ -1,6 +1,6 @@
 ---
 name: preset
-description: Switch the model tier of all slim-claude agents at once (cheap, balanced, max). Use when the user wants to cut cost, raise quality, or asks about model presets.
+description: "Switch the model tier of all slim-claude agents at once (cheap, balanced, max). Use when the user wants to cut cost, raise quality, or asks about model presets."
 ---
 
 # Model presets

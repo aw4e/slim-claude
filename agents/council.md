@@ -1,6 +1,6 @@
 ---
 name: council
-description: Synthesizes independent councillor answers into one consensus report with dissent. Dispatched by the council skill after all seats reply.
+description: "Synthesizes independent councillor answers into one consensus report with dissent. Dispatched by the council skill after all seats reply."
 model: opus
 tools: Read, Grep, Glob
 ---

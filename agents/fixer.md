@@ -1,6 +1,6 @@
 ---
 name: fixer
-description: Fast, focused implementation specialist for bounded, well-specified code changes.
+description: "Fast, focused implementation specialist for bounded, well-specified code changes."
 model: sonnet
 ---
 

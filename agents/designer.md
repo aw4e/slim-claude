@@ -1,6 +1,6 @@
 ---
 name: designer
-description: Frontend UI/UX specialist - designs, implements, and reviews intentional, polished interfaces.
+description: "Frontend UI/UX specialist - designs, implements, and reviews intentional, polished interfaces."
 model: sonnet
 ---
 
