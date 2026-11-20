@@ -40,6 +40,18 @@ All local, nothing is sent anywhere. The guards ask for confirmation; they never
 - `PreToolUse` Write/Edit/MultiEdit: confirms writes to `.env*` (except `.example`), `*.pem`, `*.key`, SSH keys, or content that looks like an AWS/GitHub/Anthropic/Slack key or a private key block.
 - `PostToolUse` Write/Edit/MultiEdit: after a `.json` edit, reports a parse error back to the model immediately.
 
+### Faster hooks (optional, Rust)
+
+The hooks run on Node by default (about 50 ms per call, mostly Node startup). A Rust port starts in about 7-9 ms. Build it once on your machine, then flip the switch:
+
+```
+cd hooks/rust && cargo build --release
+node hooks/use-rust.mjs on      # off | status
+node hooks/test.mjs --rust      # parity check against the Node hooks
+```
+
+The binary is git-ignored and built per machine, so other users and other OSes keep the Node default. A plugin update restores the Node default; re-run `on`.
+
 ## Install
 
 Local test, from any project:

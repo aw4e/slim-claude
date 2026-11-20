@@ -5,7 +5,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.mjs\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/session-start.mjs\"",
+            "timeout": 5
           }
         ]
       }
@@ -16,7 +17,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard-destructive.mjs\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard-destructive.mjs\"",
+            "timeout": 5
           }
         ]
       },
@@ -25,7 +27,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard-secrets.mjs\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/guard-secrets.mjs\"",
+            "timeout": 5
           }
         ]
       }
@@ -36,7 +39,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/check-json.mjs\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/check-json.mjs\"",
+            "timeout": 5
           }
         ]
       }
@@ -46,7 +50,8 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/council-nudge.mjs\""
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/council-nudge.mjs\"",
+            "timeout": 5
           }
         ]
       }
