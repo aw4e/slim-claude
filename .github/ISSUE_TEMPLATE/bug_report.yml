@@ -1,0 +1,68 @@
+name: Bug report
+description: Something in slim-claude does not work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        slim-claude is beta and has only been tested on Windows through non-interactive sessions, so reports from
+        interactive sessions, macOS, and Linux are especially useful. Thank you.
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options: [Windows, macOS, Linux, Other]
+    validations:
+      required: true
+  - type: input
+    id: claude-version
+    attributes:
+      label: Claude Code version
+      description: Output of `claude --version`
+    validations:
+      required: true
+  - type: input
+    id: plugin-version
+    attributes:
+      label: slim-claude version or commit
+      description: The version in `.claude-plugin/plugin.json`, or the commit you installed
+    validations:
+      required: true
+  - type: dropdown
+    id: mode
+    attributes:
+      label: How were you running it?
+      options: [Interactive session, "claude -p (non-interactive)", Other]
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: Which agent or skill, what you asked, and what you saw. Quote exact error text.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: validate
+    attributes:
+      label: Output of `claude plugin validate <plugin folder>`
+      description: Paste the errors (warnings about icon or privacy URL can be skipped).
+      render: text
+  - type: textarea
+    id: repro
+    attributes:
+      label: Steps to reproduce
+      description: The shortest prompt or command sequence that shows the problem.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I did not paste secrets, tokens, or private code.
+          required: true

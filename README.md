@@ -64,6 +64,18 @@ Skills (invoke as `/slim-claude:<name>`): `deepwork` (multi-phase heavy builds),
 
 Optional extras not loaded by default (reverse-engineering agents) are in [`extras/`](extras/README.md).
 
+## Cost
+
+Every subagent is a separate model session with its own context, so delegating costs more than doing a small task
+yourself. Measured in the live suite on tiny tasks (orchestrator on the session model): one delegated task about
+$0.06-0.16, a council run about $0.18-0.23 (three seats plus a synthesis, one on opus). Real tasks on real
+projects will cost more and scale with how much code the agents read. Ways to stay in control:
+
+- Skip the orchestrator for small edits; start a plain session instead.
+- `/slim-claude:preset` with `cheap` moves search and chores to haiku and sonnet.
+- Use `council` and `oracle` (opus) only for decisions that deserve it.
+- Watch usage in your first sessions before pointing it at a large project.
+
 ## Hooks
 
 All local; nothing is sent anywhere. The guards ask for confirmation; they never deny.
@@ -92,6 +104,8 @@ Edit the `model:` line in any `agents/*.md`. Subagents can only use Claude model
 overrides go in `~/.claude/agents/` or `.claude/agents/` so plugin updates do not erase them.
 
 ## Development
+
+Release notes: [`CHANGELOG.md`](CHANGELOG.md).
 
 Before a release, run all three:
 
