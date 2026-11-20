@@ -1,0 +1,15 @@
+{
+  "name": "oh-my-claudecode",
+  "owner": {
+    "name": "aw4e",
+    "url": "https://github.com/aw4e"
+  },
+  "plugins": [
+    {
+      "name": "oh-my-claudecode",
+      "source": "./",
+      "description": "Orchestrator and specialist subagents for Claude Code."
+    }
+  ],
+  "description": "Orchestrator, specialist subagents, skills, and hooks for Claude Code. Adapted from oh-my-opencode-slim."
+}

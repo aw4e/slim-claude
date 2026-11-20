@@ -1,0 +1,16 @@
+{
+  "name": "oh-my-claudecode",
+  "version": "0.1.0",
+  "description": "Orchestrator with specialist subagents, review agents, skills, MCPs, and safety hooks for Claude Code. Adapted from oh-my-opencode-slim.",
+  "license": "MIT",
+  "keywords": [
+    "agents",
+    "orchestration",
+    "subagents",
+    "workflow"
+  ],
+  "author": {
+    "name": "aw4e",
+    "url": "https://github.com/aw4e"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "cheap": {
+    "explorer": "haiku", "oracle": "sonnet", "designer": "sonnet", "fixer": "haiku",
+    "observer": "haiku", "council": "sonnet",
+    "arbiter": "sonnet", "paladin": "sonnet", "hunter": "sonnet", "proctor": "sonnet",
+    "janitor": "haiku", "validator": "haiku", "documenter": "haiku", "chronicler": "sonnet", "debugger": "sonnet"
+  },
+  "balanced": {
+    "explorer": "haiku", "oracle": "opus", "designer": "sonnet", "fixer": "sonnet",
+    "observer": "sonnet", "council": "opus",
+    "arbiter": "inherit", "paladin": "inherit", "hunter": "inherit", "proctor": "inherit",
+    "janitor": "inherit", "validator": "inherit", "documenter": "inherit", "chronicler": "inherit", "debugger": "inherit"
+  },
+  "max": {
+    "explorer": "sonnet", "oracle": "opus", "designer": "opus", "fixer": "opus",
+    "observer": "sonnet", "council": "opus",
+    "arbiter": "opus", "paladin": "opus", "hunter": "opus", "proctor": "opus",
+    "janitor": "opus", "validator": "sonnet", "documenter": "sonnet", "chronicler": "opus", "debugger": "opus"
+  }
+}
