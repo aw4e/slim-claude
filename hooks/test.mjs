@@ -43,6 +43,10 @@ fs.writeFileSync(good, '{"a":1}'); fs.writeFileSync(bad, '{"a":1,}'); fs.writeFi
 expect('valid json', run('check-json', { tool_input: { file_path: good } }), '');
 expect('invalid json', run('check-json', { tool_input: { file_path: bad } }), 'not valid JSON');
 expect('non-json file', run('check-json', { tool_input: { file_path: txt } }), '');
+const huge = path.join(tmp, 'huge.json');
+fs.writeFileSync(huge, 'x'.repeat(6 * 1024 * 1024));
+expect('oversized invalid json is skipped, not blocked', run('check-json', { tool_input: { file_path: huge } }), '');
+expect('missing json file is skipped', run('check-json', { tool_input: { file_path: path.join(tmp, 'nope.json') } }), '');
 // council-nudge
 expect('nudge: en trigger', nudge('give me a second opinion on this', sid), 'council skill');
 expect('nudge: once per session', nudge('we need consensus from several models', sid), '');

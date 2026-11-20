@@ -11,7 +11,7 @@ An orchestrator that plans work and hands it to specialist subagents (search, ar
 UI, implementation, audits), plus skills and a few safety hooks, for Claude Code. Adapted from
 [oh-my-opencode-slim](https://github.com/alvinunreal/oh-my-opencode-slim) (MIT).
 
-> **Status: beta (v0.1.0).** Passes `claude plugin validate`; the hooks have automated tests (39 cases)
+> **Status: beta (v0.1.0).** Passes `claude plugin validate`; the hooks have automated tests (41 cases)
 > and a fresh-clone release gate. Verified end to end once on Windows: with the orchestrator as the main agent, a
 > request was delegated to `slim-claude:explorer`, which searched and returned the correct result. Not yet verified:
 > the other agents and skills in real use, interactive sessions, macOS and Linux. Issues and reports welcome.

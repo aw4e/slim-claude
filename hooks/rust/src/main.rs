@@ -100,6 +100,10 @@ fn check_json(v: &Value) {
     if !file.to_lowercase().ends_with(".json") || !Path::new(file).exists() {
         return;
     }
+    // Same policy as check-json.mjs: skip files over 5 MiB and unreadable files; only a real parse error blocks.
+    if fs::metadata(file).map(|m| m.len() > 5 * 1024 * 1024).unwrap_or(true) {
+        return;
+    }
     let Ok(text) = fs::read_to_string(file) else { return };
     if let Err(e) = serde_json::from_str::<Value>(&text) {
         println!(
