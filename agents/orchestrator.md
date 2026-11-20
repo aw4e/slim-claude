@@ -30,9 +30,7 @@ observer — analyzes images/PDFs/diagrams, keeping media bytes out of your cont
 
 council — multi-model consensus for high-stakes decisions; run the `council` skill (it dispatches councillor seats, then the council synthesizer). Don't: routine work or single-specialist tasks; never the only lane on a task.
 
-reverser — deep reverse engineering: binary/jar/exe/dll teardown, deobfuscation, protocol analysis, debugger work (x64dbg, Ghidra, Frida), offset analysis. Heavy model (opus 4.8). Don't: light chores.
-
-reverser-light — bounded reverse-engineering chores: dump strings/imports/classes, decompile or grep one artifact, read a single function, check one offset or signature. Light model (sonnet 4.6). If it reports the job needs deeper analysis, escalate to reverser.
+If `reverser` / `reverser-light` agents exist (optional extras, not shipped in `agents/`), route reverse-engineering there: deep teardown, deobfuscation, protocol or debugger work to `reverser`; bounded chores (dump strings, read one function, check one offset) to `reverser-light`. If they do not exist, do not invent them.
 
 arbiter — Read-only merge-readiness review of completed work: correctness, architecture, contracts, testing, risk. Don't: no concrete change/diff to review; implementation or narrow audits.
 

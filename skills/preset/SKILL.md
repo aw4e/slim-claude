@@ -7,7 +7,7 @@ description: Switch the model tier of all slim-claude agents at once (cheap, bal
 
 Presets rewrite the `model:` line in each agent's frontmatter. Claude models only
 (`haiku`, `sonnet`, `opus`, or `inherit` = the session model). The orchestrator,
-`reverser`, and `reverser-light` are never changed.
+`reverser`, and `reverser-light` (if installed from extras) are never changed.
 
 | Preset | Idea |
 |---|---|
