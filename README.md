@@ -1,5 +1,12 @@
 # slim-claude
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-white.svg">
+    <img src="assets/logo.svg" alt="slim-claude logo" width="96" height="96">
+  </picture>
+</p>
+
 An orchestrator that plans work and hands it to specialist subagents (search, architecture review,
 UI, implementation, audits), plus skills and a few safety hooks, for Claude Code. Adapted from
 [oh-my-opencode-slim](https://github.com/alvinunreal/oh-my-opencode-slim) (MIT).
