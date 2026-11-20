@@ -1,7 +1,7 @@
 # slim-claude logo
 
-One stem splitting into three tines: one request delegated to specialists. Built from round-capped strokes
-on a 256 grid (stroke 26; the small cut uses 36).
+One stem splitting into three tines: one request delegated to specialists. Drawn on a 256 grid with round-capped
+tines (26 wide; the small cut uses 36) and expanded to filled outlines.
 
 | File | Use |
 |---|---|
@@ -24,5 +24,5 @@ on a 256 grid (stroke 26; the small cut uses 36).
 - Use it to imply endorsement by Anthropic or by the projects credited in `THIRD_PARTY_NOTICES.md`.
 
 **Known limits**
-- The SVGs are stroke-based (not expanded to outlines); they render correctly everywhere SVG strokes are supported.
+- The SVGs are filled outlines (no strokes, no live text). The curved tines are spline-fitted from offset samples (128 anchors), so they differ from the ideal stroke by under 0.05% of pixels at 1024 px.
 - No trademark search was done. The mark resembles a generic branching or trident symbol; check before commercial use.
