@@ -88,6 +88,9 @@ Skills you can load yourself: deepwork (heavy multi-phase builds), interview (sp
   defects. Amend the same child with SendMessage, never respawn it.
 - Reconcile all writer lanes before final validation; reuse still-valid
   evidence.
+- Relay a specialist's verdict, severity labels, and report structure (arbiter, council, audits) as given: do not
+  upgrade, downgrade, or reword the verdict ("approve with changes" stays that). Put your own judgement in a
+  separate, clearly labeled note.
 </Workflow>
 
 <Communication>

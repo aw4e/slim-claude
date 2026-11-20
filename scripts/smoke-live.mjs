@@ -109,7 +109,11 @@ const CASES = [
     { setup: (d) => { const g = (...a) => execFileSync('git', ['-c', 'user.name=t', '-c', 'user.email=t@t', ...a], { cwd: d, stdio: 'ignore' }); g('init', '-q'); fs.writeFileSync(path.join(d, 'README.md'), 'demo\n'); g('add', '-A'); g('commit', '-q', '-m', 'init'); fs.writeFileSync(path.join(d, 'paginate.js'), "// returns one page of items; page is 0-based\nfunction paginate(items, page, size) {\n  return items.slice(page * size, page * size + size + 1);\n}\nmodule.exports = { paginate };\n"); g('add', '-A'); g('commit', '-q', '-m', 'add paginate helper'); } }),
   // negative control: the same commit WITHOUT the bug must not be called broken
   agentCase('q-arbiter-clean', 'arbiter', 'Use the arbiter subagent to review the most recent commit in the current directory (use git show). Give a verdict and list real defects.', GIT_READ,
-    (r) => (mentions(r, /off[- ]by[- ]one|size\s*\+\s*1|one too many|extra (item|element)/i) ? ['claimed the planted off-by-one in code that does not have it'] : []),
+    (r) => [
+      ...(mentions(r, /off[- ]by[- ]one|size\s*\+\s*1|one too many|extra (item|element)/i) ? ['claimed the planted off-by-one in code that does not have it'] : []),
+      // the arbiter's own verdict on this code is "approve with changes"; the orchestrator must not escalate it
+      ...(mentions(r, /not (merge[- ]ready|ready to merge)|do not merge|reject/i) && !mentions(r, /approve|with (fixes|changes)/i) ? ['orchestrator escalated the arbiter verdict'] : []),
+    ],
     { setup: (d) => { const g = (...a) => execFileSync('git', ['-c', 'user.name=t', '-c', 'user.email=t@t', ...a], { cwd: d, stdio: 'ignore' }); g('init', '-q'); fs.writeFileSync(path.join(d, 'README.md'), 'demo\n'); g('add', '-A'); g('commit', '-q', '-m', 'init'); fs.writeFileSync(path.join(d, 'paginate.js'), "// returns one page of items; page is 0-based\nfunction paginate(items, page, size) {\n  return items.slice(page * size, page * size + size);\n}\nmodule.exports = { paginate };\n"); g('add', '-A'); g('commit', '-q', '-m', 'add paginate helper'); } }),
   agentCase('q-oracle', 'oracle', 'Ask the oracle subagent why this prints 3 3 3 and how to fix it: for (var i = 0; i < 3; i++) { setTimeout(() => console.log(i), 0); }', [],
     (r) => (mentions(r, /(closure|var\b.*(function|scope)|function[- ]scope|block[- ]scope|hoist|let\b)/i) ? [] : ['did not explain the var/closure cause'])),
