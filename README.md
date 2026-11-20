@@ -107,4 +107,4 @@ MIT. Built on oh-my-opencode-slim and community agents from the oh-my-opencode m
 
 The bundled MCP servers (`context7`, `gh_grep`) are remote: library and code-search queries made by you
 or the agents are sent to mcp.context7.com and mcp.grep.app. Delete `.mcp.json` to disable them. The
-hooks run locally and send nothing.
+hooks run locally and send nothing. Full statement: [`PRIVACY.md`](PRIVACY.md).

@@ -12,5 +12,8 @@
   "author": {
     "name": "aw4e",
     "url": "https://github.com/aw4e"
-  }
+  },
+  "privacyPolicyUrl": "https://github.com/aw4e/slim-claude/blob/main/PRIVACY.md",
+  "homepage": "https://github.com/aw4e/slim-claude",
+  "repository": "https://github.com/aw4e/slim-claude"
 }
