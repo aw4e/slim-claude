@@ -81,6 +81,16 @@ Edit the `model:` line in any `agents/*.md`. Subagents can only use Claude model
 `agents/orchestrator.md`. The council roster is the table in `skills/council/SKILL.md`. Durable
 overrides go in `~/.claude/agents/` or `.claude/agents/` so plugin updates do not erase them.
 
+## Development
+
+Before a release, run all three:
+
+```
+claude plugin validate .
+node hooks/test.mjs                    # add --rust for the Rust hooks
+node scripts/check-fresh-clone.mjs     # clones origin as a Windows user would (autocrlf=true) and re-validates
+```
+
 ## Not ported from oh-my-opencode-slim
 
 - Mixing non-Claude providers per agent, presets with fallback chains (needs a proxy).
